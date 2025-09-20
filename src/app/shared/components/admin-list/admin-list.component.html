@@ -1,0 +1,85 @@
+<div class="admin-component layout-general row">
+  <div class="container-list col-lg-4 component-list">
+    <app-search-basic (clearSearch)="clearSearch()"
+                      (submitSearch)="onSubmitSearch()"
+                      [formGroup]="formSearch"
+                      [titleSearch]="'Buscar Administrador'">
+    </app-search-basic>
+
+    <mat-list class="list-crud">
+      @for (item of list; track item) {
+        <mat-list-item
+          class="mat-elevation-z1"
+          (click)="isNew = false; isEdit = true;"
+          [ngClass]="{'item-selected': item?.id === itemSelected}">
+          <div class="d-flex item-content">
+            <div class="col-10" (click)="loadForm(item);">
+              <div matListItemTitle>{{ item.id }}</div>
+              <div matListItemLine>{{ item.username }}</div>
+            </div>
+            <button type="button" mat-icon-button class="btn-list-delete state danger-color"
+                    (click)="onDelete(item)" matTooltip="Eliminar">
+              <mat-icon>delete_outline</mat-icon>
+            </button>
+          </div>
+        </mat-list-item>
+      }
+    </mat-list>
+
+    <mat-paginator (page)="onPageChange($event)"
+                   [length]="queryCount"
+                   [pageIndex]="+page"
+                   [pageSize]="10"
+                   hidePageSize></mat-paginator>
+  </div>
+  <mat-card class="container-form col-lg-8">
+    <form [formGroup]="form">
+      <mat-card-header>
+        <h1>Administrador</h1>
+        @if (itemSelected !== -1) {
+          <button type="button"
+                  (click)="resetForm()"
+                  class="ms-3 btn-add" mat-mini-fab>
+            <mat-icon>add</mat-icon>
+          </button>
+        }
+      </mat-card-header>
+      <mat-card-subtitle>
+        <h3>{{ title }}</h3>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="row">
+          <mat-form-field class="col-lg-6">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input formControlName="username" matInput maxlength="100" required type="text">
+            @if (form.get('username')?.invalid) {
+              <mat-error>
+                El campo es requerido
+              </mat-error>
+            }
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label>Constraseña</mat-label>
+            <input formControlName="password" matInput maxlength="40" required type="text">
+            @if (form.get('password')?.invalid) {
+              <mat-error>
+                El campo es requerido
+              </mat-error>
+            }
+          </mat-form-field>
+        </div>
+      </mat-card-content>
+      <mat-card-footer>
+        <div class="w-100 ps-3">
+          <button
+            type="button"
+            (click)="onSubmit()"
+            [disabled]="form.invalid"
+            color="primary"
+            mat-raised-button>Guardar
+          </button>
+        </div>
+      </mat-card-footer>
+    </form>
+  </mat-card>
+</div>

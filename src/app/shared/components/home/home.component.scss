@@ -1,0 +1,117 @@
+@import "../src/styles";
+
+.home-container {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  .overlay{
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: linear-gradient(
+        rgb(25, 71, 117),
+        rgba(25, 71, 117, 0.71),
+        rgba(25, 71, 117, 0.25));
+  }
+
+  .logo-container {
+    background: url('/assets/images/LOGO_MIUMGSOCIAL.svg') transparent center 10px no-repeat;
+    background-size: contain;
+    height: 134px;
+    margin-bottom: 0;
+    display: block;
+    transition: all 300ms ease-in-out;
+    cursor: pointer;
+    margin-left: 6px;  width: 5em;
+    margin-top: 8px;
+  }
+
+  .user-image{
+    border-radius: 10em;
+    transform: scale(.3);
+    border: solid 5px white;
+  }
+
+  .icon-close{
+    color: white;
+  }
+
+  .menu-icon{
+    color: white;
+  }
+
+  .sidenav-container{
+    background-color: $primary-color;
+  }
+
+  .bg-home{
+    background-color: #d3d3d3;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .example-toolbar{
+    background-color: $primary-color !important;
+  }
+
+  .example-is-mobile .example-toolbar {
+    background-color: $primary-color;
+    position: fixed;
+    /* Make sure the toolbar will stay on top of the content as it scrolls past. */
+    z-index: 2;
+  }
+
+  h1.example-app-name {
+    margin-left: 8px;
+  }
+
+  .example-sidenav-container {
+    /* When the sidenav is not fixed, stretch the sidenav container to fill the available space. This
+       causes `<mat-sidenav-content>` to act as our scrolling element for desktop layouts. */
+    flex: 1;
+  }
+
+  .example-is-mobile .example-sidenav-container {
+    /* When the sidenav is fixed, don't constrain the height of the sidenav container. This allows the
+       `<body>` to be our scrolling element for mobile layouts. */
+    flex: 1 0 auto;
+  }
+
+  .example-spacer {
+    flex: 1 1 auto;
+  }
+
+  .mat-drawer-inner-container{
+    padding: 5px;
+  }
+
+  .mat-mdc-list-item-icon{
+    color: white;
+  }
+
+  .nav-list__item{
+    color: white;
+  }
+
+  .mat-mdc-list-item {
+    border-radius: 25px !important;
+    transition: 300ms;
+    &:hover{
+      transition: 300ms;
+      background-color: rgba(250, 250, 250, 0.27);
+    }
+  }
+
+}
+
+
+
+

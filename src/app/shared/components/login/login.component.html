@@ -1,0 +1,40 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" >
+  <div class="login-container">
+    <div class="row container-fluid h-100 w-100  p-0">
+      <mat-card class="card-container col-md-5 h-100 d-flex justify-content-center align-content-center align-items-center">
+        <mat-card-content class="text-center d-flex">
+          <div class="form-container row">
+            <h2 class="welcome-title">¡Bienvenido!</h2>
+            <span class="second-title">Accede con tus credenciales para gestionar usuarios, moderar contenido, supervisar interacciones y mantener la comunidad activa y segura</span>
+            <mat-form-field appearance="fill">
+              <mat-label>usuario</mat-label>
+              <input matInput formControlName="username">
+              <mat-icon matSuffix>person</mat-icon>
+            </mat-form-field>
+
+            <mat-form-field appearance="fill">
+              <mat-label>Contraseña</mat-label>
+              <mat-icon     (click)="clickEvent($event)"
+                            matSuffix
+                            [attr.aria-label]="'Hide password'"
+                            [attr.aria-pressed]="hide()">{{ hide() ? 'visibility_off' : 'visibility' }}</mat-icon>
+              <input matInput formControlName="password" [type]="hide() ? 'password' : 'text'"/>
+            </mat-form-field>
+          </div>
+        </mat-card-content>
+        <mat-card-actions class="d-block">
+          <div class="buttons-container d-block">
+            <button class="btn-submit me-2" type="submit" mat-flat-button>
+              Ingresar
+            </button>
+          </div>
+        </mat-card-actions>
+      </mat-card>
+      <div class="right-container h-100 col-md-7">
+        <img class="home-image" src="assets/images/LOGO_MIUMGSOCIAL.svg" alt="home_img"><br>
+      </div>
+    </div>
+  </div>
+</form>
+
+

@@ -1,0 +1,51 @@
+<div class="home-container" [class.example-is-mobile]="isMobile">
+  <mat-toolbar class="example-toolbar">
+    <button mat-icon-button (click)="snav.toggle()"><mat-icon class="menu-icon">menu</mat-icon></button>
+    <div class="logo-container">
+      <div class="logo" [routerLink]="'/home'"></div>
+    </div>
+    <span class="example-spacer"></span>
+    <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
+      <mat-icon class="icon-close" >account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button  mat-menu-item>
+        <mat-icon>
+          manage_accounts
+        </mat-icon>
+        Mi Perfil
+      </button>
+      <button  mat-menu-item (click)="logout()">
+        <mat-icon>
+          logout
+        </mat-icon>
+        Cerrar Sesión
+      </button>
+    </mat-menu>
+  </mat-toolbar>
+
+  <mat-sidenav-container class="example-sidenav-container"
+                         [style.marginTop.px]="isMobile ? 56 : 0">
+    <mat-sidenav class="sidenav-container" #snav [mode]="isMobile ? 'over' : 'side'"
+                 [fixedInViewport]="isMobile" fixedTopGap="56">
+      <mat-list role="list">
+        <mat-list-item class="mt-1" [routerLink]="'/home/admin'" role="listitem">
+          <span class="nav-list__item">Administradores</span>
+          <mat-icon class="nav-list__icon" matListItemIcon>admin_panel_settings</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="mt-1" [routerLink]="'/home/users'" role="listitem">
+          <span class="nav-list__item">Usuarios</span>
+          <mat-icon class="nav-list__icon" matListItemIcon>group</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="mt-1" [routerLink]="'/home/posts'" role="listitem">
+          <span class="nav-list__item">Publicaciones</span>
+          <mat-icon class="nav-list__icon" matListItemIcon>newspaper</mat-icon>
+        </mat-list-item>
+      </mat-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content class="bg-home">
+      <router-outlet class="router-container"></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>

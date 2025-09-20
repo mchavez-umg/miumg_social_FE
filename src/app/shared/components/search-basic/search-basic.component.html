@@ -1,0 +1,18 @@
+<div class="search-lazy">
+    <form [formGroup]="formGroup" (ngSubmit)="onSubmitSearch();">
+        <div class="search">
+            <mat-form-field  class="col-12 field-search"
+                            (click)="$event.stopPropagation();">
+                <input type="text" matInput placeholder="{{ titleSearch}}"
+                       formControlName="search" maxlength="255" (keydown.enter)="$event.stopPropagation();">
+                <button class="btn-cancel__search" type="button" mat-icon-button matSuffix
+                        *ngIf="formGroup.get('search')?.value?.length > 0" (click)="onClearSearch();">
+                    <mat-icon>cancel</mat-icon>
+                </button>
+                <button class="btn-search" mat-icon-button matSuffix>
+                    <mat-icon>search</mat-icon>
+                </button>
+            </mat-form-field>
+        </div>
+    </form>
+</div>
