@@ -33,7 +33,7 @@ export class AuthService implements CanActivate {
   login() {
     localStorage.setItem('isLoggedIn', 'true');
     this.loggedIn.next(true);
-    this.router.navigate(['/home']);
+    this.router.navigate(['/home/dashboard']);
   }
 
   logout() {

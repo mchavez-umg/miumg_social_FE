@@ -1,8 +1,8 @@
 <div class="home-container" [class.example-is-mobile]="isMobile">
   <mat-toolbar class="example-toolbar">
     <button mat-icon-button (click)="snav.toggle()"><mat-icon class="menu-icon">menu</mat-icon></button>
-    <div class="logo-container">
-      <div class="logo" [routerLink]="'/home'"></div>
+    <div [routerLink]="'/home/dashboard'" class="logo-container">
+      <div class="logo"></div>
     </div>
     <span class="example-spacer"></span>
     <button [matMenuTriggerFor]="menu" mat-icon-button class="example-icon favorite-icon" aria-label="Example icon-button with heart icon">
@@ -24,11 +24,14 @@
     </mat-menu>
   </mat-toolbar>
 
-  <mat-sidenav-container class="example-sidenav-container"
-                         [style.marginTop.px]="isMobile ? 56 : 0">
+  <mat-sidenav-container class="example-sidenav-container">
     <mat-sidenav class="sidenav-container" #snav [mode]="isMobile ? 'over' : 'side'"
                  [fixedInViewport]="isMobile" fixedTopGap="56">
       <mat-list role="list">
+        <mat-list-item class="mt-1" [routerLink]="'/home/dashboard'" role="listitem">
+          <span class="nav-list__item">Dashboard</span>
+          <mat-icon class="nav-list__icon" matListItemIcon>analytics</mat-icon>
+        </mat-list-item>
         <mat-list-item class="mt-1" [routerLink]="'/home/admin'" role="listitem">
           <span class="nav-list__item">Administradores</span>
           <mat-icon class="nav-list__icon" matListItemIcon>admin_panel_settings</mat-icon>
@@ -39,6 +42,10 @@
         </mat-list-item>
         <mat-list-item class="mt-1" [routerLink]="'/home/posts'" role="listitem">
           <span class="nav-list__item">Publicaciones</span>
+          <mat-icon class="nav-list__icon" matListItemIcon>newspaper</mat-icon>
+        </mat-list-item>
+        <mat-list-item class="mt-1" [routerLink]="'/home/calificaciones'" role="listitem">
+          <span class="nav-list__item">Calificaciones</span>
           <mat-icon class="nav-list__icon" matListItemIcon>newspaper</mat-icon>
         </mat-list-item>
       </mat-list>

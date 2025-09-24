@@ -1,0 +1,77 @@
+<div class="dashboard-component layout-general row">
+  <div class="general-container">
+    <mat-card class="card-container">
+      <mat-card-content class="p-4 card-container__content">
+        <div class="row h-100">
+          <div class="col-md-4 mb-3 mb-md-0">
+            <mat-card class="info-card user h-100">
+              <mat-card-header class="d-flex justify-content-center">
+                <h1 class="info-card__title">Usuarios</h1>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="d-flex align-items-center justify-content-center h-75">
+                  <div class="d-flex justify-content-center">
+                    <img src="/assets/images/business-people.png"
+                         class="animate__bounceIn category-img mb-5"
+                         loading="lazy"
+                         alt="image"/>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <h1 class="animate__bounceIn info-card__count">
+                    {{lengthUsers | number: '1.0-0'}}
+                  </h1>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <mat-card class="info-card post h-100">
+              <mat-card-header class="d-flex justify-content-center">
+                <h1 class="info-card__title">Publicaciones</h1>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="d-flex align-items-center justify-content-center h-75">
+                  <div class="d-flex justify-content-center">
+                    <img src="/assets/images/publicacion-de-instagram.png"
+                         class="animate__bounceIn category-img mb-5"
+                         loading="lazy"
+                         alt="image"/>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <h1 class="animate__bounceIn info-card__count">
+                    {{lengthPost | number: '1.0-0'}}
+                  </h1>
+                </div>
+
+              </mat-card-content>
+            </mat-card>
+          </div>
+          <div class="col-md-4 mb-3 mb-md-0">
+            <mat-card class="info-card likes h-100">
+              <mat-card-header class="d-flex justify-content-center">
+                <h1 class="info-card__title">Likes</h1>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="d-flex align-items-center justify-content-center h-75">
+                  <div class="d-flex justify-content-center">
+                    <img src="/assets/images/pulgares-hacia-arriba.png"
+                         class="animate__bounceIn category-img mb-5"
+                         loading="lazy"
+                         alt="image"/>
+                  </div>
+                </div>
+                <div class="d-flex justify-content-center">
+                  <h1 class="animate__bounceIn info-card__count">
+                    {{lengthLikes | number: '1.0-0'}}
+                  </h1>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</div>

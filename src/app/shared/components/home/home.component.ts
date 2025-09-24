@@ -6,7 +6,8 @@ import {MatMenuModule, MatMenuTrigger} from "@angular/material/menu";
 import {RouterLink, RouterOutlet} from "@angular/router";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatListModule} from "@angular/material/list";
-import {MediaMatcher} from "@angular/cdk/layout";
+import {AuthService} from "../../services/auth.service";
+
 
 @Component({
   selector: 'app-home',
@@ -29,9 +30,7 @@ export class HomeComponent implements OnInit {
   width = 0;
   isMobile: boolean = false;
 
-  constructor() {
-
-  }
+  constructor(private authService: AuthService) {}
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -49,6 +48,6 @@ export class HomeComponent implements OnInit {
   }
 
   logout(): void {
-    console.log('Cerrar Sesión')
+    this.authService.logout();
   }
 }

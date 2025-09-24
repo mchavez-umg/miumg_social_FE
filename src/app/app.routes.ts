@@ -5,9 +5,10 @@ import {AuthService} from "./shared/services/auth.service";
 import {AdminListComponent} from "./shared/components/admin-list/admin-list.component";
 import {UsersComponent} from "./shared/components/users/users.component";
 import {PostsComponent} from "./shared/components/posts/posts.component";
+import {CalificacionesComponent} from "./shared/components/calificaciones/calificaciones.component";
+import {DashboardComponent} from "./shared/components/dashboard/dashboard.component";
 
 export const routes: Routes = [
-  { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   {
     path: 'home',
@@ -17,7 +18,10 @@ export const routes: Routes = [
       { path: 'admin', component: AdminListComponent, canActivate: [AuthService] },
       { path: 'users', component: UsersComponent, canActivate: [AuthService] },
       { path: 'posts', component: PostsComponent, canActivate: [AuthService] },
+      { path: 'calificaciones', component: CalificacionesComponent, canActivate: [AuthService] },
+      { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
     ]
   },
+  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: '/404', pathMatch: 'full' }
 ];
