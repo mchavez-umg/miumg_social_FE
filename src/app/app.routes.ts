@@ -7,6 +7,7 @@ import {UsersComponent} from "./shared/components/users/users.component";
 import {PostsComponent} from "./shared/components/posts/posts.component";
 import {CalificacionesComponent} from "./shared/components/calificaciones/calificaciones.component";
 import {DashboardComponent} from "./shared/components/dashboard/dashboard.component";
+import {NotFoundComponent} from "./shared/components/not-found/not-found.component";
 
 export const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -22,6 +23,7 @@ export const routes: Routes = [
       { path: 'dashboard', component: DashboardComponent, canActivate: [AuthService] },
     ]
   },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: '/404', pathMatch: 'full' }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: '404', component: NotFoundComponent },
+  { path: '**', component: NotFoundComponent }
 ];

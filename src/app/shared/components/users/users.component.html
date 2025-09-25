@@ -1,1 +1,99 @@
-<p>users works!</p>
+<div class="user-component layout-general row">
+  <div class="container-list col-lg-4 component-list">
+    <app-search-basic (clearSearch)="clearSearch()"
+                      (submitSearch)="onSubmitSearch()"
+                      [formGroup]="formSearch"
+                      [titleSearch]="'Buscar Administrador'">
+    </app-search-basic>
+
+    <mat-list class="list-crud">
+      @for (item of list; track item) {
+        <mat-list-item
+          class="mat-elevation-z1"
+          (click)="loadForm(item)"
+          [ngClass]="{'item-selected': item?.id === itemSelected}">
+          <mat-icon matListItemIcon
+                    [ngClass]="{'status-enabled': item.status === 1, 'status-disabled': item.status === 0}">
+            power_settings_new
+          </mat-icon>
+          <div matListItemTitle>{{ item.email }}</div>
+          <div matListItemLine>{{ item.username }}</div>
+        </mat-list-item>
+      }
+    </mat-list>
+
+    <mat-paginator (page)="onPageChange($event)"
+                   [length]="queryCount"
+                   [pageIndex]="+page"
+                   [pageSize]="10"
+                   hidePageSize></mat-paginator>
+  </div>
+  <mat-card class="container-form col-lg-8">
+    <form [formGroup]="form">
+      <mat-card-header>
+        <h1>Usuario</h1>
+        <div class="w-100 d-flex justify-content-end">
+          @if (statusItemSelected !== -1){
+            <mat-slide-toggle
+              (change)="changeStatus($event)"
+              class="status"
+              color="primary"
+              formControlName="status"
+              [matTooltip]="statusItemSelected === 0 ? 'Desbloquear' : 'Bloquear'">
+            </mat-slide-toggle>
+          }
+        </div>
+      </mat-card-header>
+      <mat-card-subtitle>
+        <h3>{{ title }}</h3>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="row">
+          <mat-form-field class="col-lg-6">
+            <mat-label>Nombre</mat-label>
+            <input formControlName="name" matInput maxlength="100" required type="text">
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label>Email</mat-label>
+            <input formControlName="email" matInput maxlength="100" required type="text">
+          </mat-form-field>
+          <mat-form-field class="col-lg-6">
+            <mat-label>Nombre de Usuario</mat-label>
+            <input formControlName="username" matInput maxlength="100" required type="text">
+          </mat-form-field>
+        </div>
+        <div class="table-container">
+          <table mat-table [dataSource]="dataSource" matSort>
+
+            <!-- ID Column -->
+            <ng-container matColumnDef="id">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
+            </ng-container>
+
+            <!-- Progress Column -->
+            <ng-container matColumnDef="progress">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
+              <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
+            </ng-container>
+
+            <!-- Name Column -->
+            <ng-container matColumnDef="name">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
+            </ng-container>
+
+            <!-- Fruit Column -->
+            <ng-container matColumnDef="fruit">
+              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
+              <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+          </table>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

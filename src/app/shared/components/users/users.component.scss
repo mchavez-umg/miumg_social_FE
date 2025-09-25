@@ -1,0 +1,33 @@
+@import "../src/styles";
+
+.user-component{
+  .container-list{
+    height: calc(100vh - 125px);
+  }
+
+  .mat-mdc-card-subtitle{
+    margin-top: -1.8em;
+    margin-left: 1em;
+  }
+
+  .container-form{
+    border-radius: 15px;
+    height: calc(100vh - 125px);
+  }
+
+  .mat-mdc-list-item-title{
+    margin-top: 11px;
+  }
+
+  .status-enabled{
+    color: green;
+  }
+
+  .status-disabled{
+    color: red;
+  }
+
+  .table-container{
+    height: calc(100vh - 373px);
+  }
+}

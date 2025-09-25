@@ -22,5 +22,9 @@ export class UserService {
   }
 
 
+  updateUser(id: number | undefined, request: Usuario): Observable<Usuario> {
+    return this.http.put<Usuario>(`${this.apiUrl}/usuario/${id}`, request);
+  }
+
 }
 

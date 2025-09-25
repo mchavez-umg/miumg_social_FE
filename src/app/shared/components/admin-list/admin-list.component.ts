@@ -54,15 +54,12 @@ export class AdminListComponent implements OnInit, OnDestroy {
   form: FormGroup;
   page: number;
   itemSelected: number | undefined = -1;
-  itemActive: boolean;
   subscriptionRoute: Subscription;
   subscriptionService: Subscription;
   queryCount: number;
   title: string = '';
-  oldParams = {};
 
-  constructor(private formBuilder: FormBuilder,
-              private service: AdminService,
+  constructor(private service: AdminService,
               private notifications: NotificationsService) {
     this.formSearch = new FormGroup({
       search: new FormControl('')
