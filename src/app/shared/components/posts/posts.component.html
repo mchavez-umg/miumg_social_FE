@@ -1,1 +1,71 @@
-<p>posts works!</p>
+<div class="publication-component layout-general row">
+  <div class="container-list col-lg-4 component-list">
+    <app-search-basic (clearSearch)="clearSearch()"
+                      (submitSearch)="onSubmitSearch()"
+                      [formGroup]="formSearch"
+                      [titleSearch]="'Buscar Publicación'">
+    </app-search-basic>
+
+    <mat-list class="list-crud">
+      @for (item of list; track item) {
+        <mat-list-item
+          class="mat-elevation-z1"
+          (click)="loadForm(item)"
+          [ngClass]="{'item-selected': item?.id === itemSelected}">
+          <div matListItemTitle>{{ item.id }}</div>
+          <div matListItemLine class="text-truncate">{{ item.description }}</div>
+        </mat-list-item>
+      }
+    </mat-list>
+
+    <mat-paginator (page)="onPageChange($event)"
+                   [length]="queryCount"
+                   [pageIndex]="+page"
+                   [pageSize]="10"
+                   hidePageSize></mat-paginator>
+  </div>
+  <mat-card class="container-form col-lg-8">
+    <form [formGroup]="form">
+      <mat-card-header>
+        <h1>Publicación</h1>
+      </mat-card-header>
+      <mat-card-subtitle>
+        <h3>{{ title }}</h3>
+      </mat-card-subtitle>
+      <mat-card-content>
+        <div class="row">
+          <mat-form-field class="col-sm-8"ssss>
+            <mat-label>Descripción</mat-label>
+            <textarea cdkTextareaAutosize
+                      readonly
+                      matInput
+                      id="description"
+                      formControlName="description">
+            </textarea>
+          </mat-form-field>
+          <mat-form-field class="col-sm-4">
+            <mat-label>Fecha de creación</mat-label>
+            <input readonly formControlName="publicationDate" matInput type="text">
+          </mat-form-field>
+          <div class="post-container col-sm-6">
+            @if (this.imagePath){
+              <div class="img-container">
+                <img mat-card-image [src]="imagePath" alt="image post">
+              </div>
+            }
+          </div>
+          <div class="col-sm-6">
+            <div class="d-flex p-2">
+              <div class="likes col-sm-6">
+                <mat-icon>thumb_up</mat-icon>
+              </div>
+              <div class="comments col-sm-6">
+                <mat-icon>comment</mat-icon>
+              </div>
+            </div>
+          </div>
+        </div>
+      </mat-card-content>
+    </form>
+  </mat-card>
+</div>

@@ -1,3 +1,5 @@
+import {Publicacion} from "./publicacion";
+
 export interface Usuario {
   id?: number;
   username: string;
@@ -5,5 +7,6 @@ export interface Usuario {
   name: string;
   password: string;
   status: number;
+  publicaciones?: Publicacion[];
 }
 

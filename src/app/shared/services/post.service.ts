@@ -19,4 +19,9 @@ export class PostService {
   getAllLikes(): Observable<any[]>{
     return this.http.get<any[]>(`${this.apiUrl}/publicacion/likes/total`)
   }
+
+  getPostById(id: number | undefined): Observable<Publicacion[]> {
+    return this.http.get<Publicacion[]>(`${this.apiUrl}/publicacion/${id}`);
+  }
+
 }

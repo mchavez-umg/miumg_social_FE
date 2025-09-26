@@ -1,16 +1,15 @@
 import {AfterViewInit, Component, OnDestroy, OnInit, ViewChild} from '@angular/core';
-import {MatButton, MatIconButton, MatMiniFabButton} from "@angular/material/button";
-import {MatCard, MatCardContent, MatCardFooter, MatCardHeader, MatCardSubtitle} from "@angular/material/card";
-import {MatError, MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
+import {MatCard, MatCardContent, MatCardHeader, MatCardSubtitle} from "@angular/material/card";
+import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatIconModule} from "@angular/material/icon";
 import {MatInput, MatInputModule} from "@angular/material/input";
 import {MatListModule} from "@angular/material/list";
 import {MatPaginator, MatPaginatorModule} from "@angular/material/paginator";
 import {MatTooltipModule} from "@angular/material/tooltip";
-import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
 import {SearchBasicComponent} from "../search-basic/search-basic.component";
 import {MatLineModule} from "@angular/material/core";
-import {NgClass} from "@angular/common";
+import {DatePipe, NgClass} from "@angular/common";
 import {Subscription} from "rxjs";
 import {Usuario} from "../../interfaces/usuario";
 import {NotificationsService} from "angular2-notifications";
@@ -19,7 +18,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatTableDataSource, MatTableModule} from "@angular/material/table";
 import {MatSort, MatSortModule} from "@angular/material/sort";
-import {Publicacion} from "../../interfaces/publicacion";
+import {Router} from "@angular/router";
+
 
 @Component({
   selector: 'app-users',
@@ -45,12 +45,13 @@ import {Publicacion} from "../../interfaces/publicacion";
     MatFormFieldModule,
     MatInputModule,
     MatSortModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    DatePipe
   ],
   templateUrl: './users.component.html',
   styleUrl: './users.component.scss'
 })
-export class UsersComponent implements OnInit, OnDestroy, AfterViewInit  {
+export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
   list: Usuario[];
   formSearch: FormGroup;
   form: FormGroup;
@@ -61,22 +62,23 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit  {
   subscriptionService: Subscription;
   queryCount: number;
   title: string = '';
-  displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
+  displayedColumns: string[] = ['publicationDate', 'description', 'options'];
   dataSource: MatTableDataSource<any>;
 
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
   constructor(private service: UserService,
-              private notifications: NotificationsService) {
+              private notifications: NotificationsService,
+              private route: Router) {
     this.formSearch = new FormGroup({
       search: new FormControl('')
     });
     this.form = new FormGroup({
-      email: new FormControl('', Validators.required),
-      name: new FormControl('', Validators.required),
-      status: new FormControl(0, Validators.required),
-      username: new FormControl('', Validators.required),
+      email: new FormControl(''),
+      name: new FormControl(''),
+      status: new FormControl(0),
+      username: new FormControl(''),
     });
   }
 
@@ -127,8 +129,14 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit  {
 
   loadForm(itemSelected: Usuario) {
     this.itemSelected = itemSelected.id;
+    this.service.getUserById(this.itemSelected).subscribe({
+      next: (data: any) => {
+        this.form.patchValue(data);
+        this.dataSource = data.publicaciones;
+      }
+    })
+
     this.statusItemSelected = itemSelected.status;
-    this.form.patchValue(itemSelected);
   }
 
   changeStatus(event: any) {
@@ -138,6 +146,14 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit  {
       next: data => {
         this.getUsers();
         this.loadForm(data)
+      }
+    });
+  }
+
+  navigateDetail(id: number) {
+    this.route.navigate(['/home/posts'], {
+      queryParams: {
+        id: id
       }
     });
   }

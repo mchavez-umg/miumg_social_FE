@@ -3,7 +3,7 @@
     <app-search-basic (clearSearch)="clearSearch()"
                       (submitSearch)="onSubmitSearch()"
                       [formGroup]="formSearch"
-                      [titleSearch]="'Buscar Administrador'">
+                      [titleSearch]="'Buscar Usuario'">
     </app-search-basic>
 
     <mat-list class="list-crud">
@@ -49,49 +49,49 @@
       </mat-card-subtitle>
       <mat-card-content>
         <div class="row">
-          <mat-form-field class="col-lg-6">
-            <mat-label>Nombre</mat-label>
-            <input formControlName="name" matInput maxlength="100" required type="text">
-          </mat-form-field>
-          <mat-form-field class="col-lg-6">
-            <mat-label>Email</mat-label>
-            <input formControlName="email" matInput maxlength="100" required type="text">
-          </mat-form-field>
-          <mat-form-field class="col-lg-6">
-            <mat-label>Nombre de Usuario</mat-label>
-            <input formControlName="username" matInput maxlength="100" required type="text">
-          </mat-form-field>
-        </div>
-        <div class="table-container">
-          <table mat-table [dataSource]="dataSource" matSort>
+          <div class="col-sm-4">
+            <mat-form-field class="col-12">
+              <mat-label>Nombre</mat-label>
+              <input readonly formControlName="name" matInput maxlength="100" type="text">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Email</mat-label>
+              <input readonly formControlName="email" matInput maxlength="100" type="text">
+            </mat-form-field>
+            <mat-form-field class="col-12">
+              <mat-label>Nombre de Usuario</mat-label>
+              <input readonly formControlName="username" matInput maxlength="100" type="text">
+            </mat-form-field>
+          </div>
+          <div class="table-container col-sm-8 mat-elevation-z5">
+            <div class="table-container__title">
+              <h1>Publicaciones</h1>
+            </div>
+            <table mat-table [dataSource]="dataSource" matSort>
 
-            <!-- ID Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
-              <td mat-cell *matCellDef="let row"> {{row.id}} </td>
-            </ng-container>
+              <ng-container matColumnDef="publicationDate">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header class="date-column">Fecha de Publicación</th>
+                <td mat-cell *matCellDef="let row">
+                  {{row.publicationDate | date: 'dd/MM/yyyy HH:mm'}}
+                </td>
+              </ng-container>
 
-            <!-- Progress Column -->
-            <ng-container matColumnDef="progress">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Progress </th>
-              <td mat-cell *matCellDef="let row"> {{row.progress}}% </td>
-            </ng-container>
+              <ng-container matColumnDef="description">
+                <th mat-header-cell *matHeaderCellDef class="center-cell">Descripción</th>
+                <td mat-cell class="text-truncate" *matCellDef="let row"> {{row.description}}</td>
+              </ng-container>
 
-            <!-- Name Column -->
-            <ng-container matColumnDef="name">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
-              <td mat-cell *matCellDef="let row"> {{row.name}} </td>
-            </ng-container>
+              <ng-container matColumnDef="options">
+                <th mat-header-cell *matHeaderCellDef  class="center-cell"> Opciones </th>
+                <td mat-cell *matCellDef="let row" class="center-cell">
+                  <mat-icon matTooltip="Detalle" (click)="navigateDetail(row.id)" class="tbl-icon">visibility</mat-icon>
+                </td>
+              </ng-container>
 
-            <!-- Fruit Column -->
-            <ng-container matColumnDef="fruit">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Fruit </th>
-              <td mat-cell *matCellDef="let row"> {{row.fruit}} </td>
-            </ng-container>
-
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
         </div>
       </mat-card-content>
     </form>

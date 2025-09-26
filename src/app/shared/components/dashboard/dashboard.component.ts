@@ -38,7 +38,7 @@ export class DashboardComponent implements OnInit {
       });
       this.postService.getAllLikes().subscribe({
         next: data => {
-          this.lengthLikes = data.length;
+          this.lengthLikes = +data;
         }
       })
     }

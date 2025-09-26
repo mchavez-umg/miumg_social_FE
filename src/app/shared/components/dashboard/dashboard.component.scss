@@ -1,3 +1,5 @@
+@import "../src/styles";
+
 .dashboard-component{
 
   .general-container{
@@ -42,13 +44,13 @@
       }
     }
     &.user{
-      background-color: #021526;
+      background-color: $aux-color1;
     }
     &.post{
-      background-color: #03346E;
+      background-color: $aux-color2;
     }
     &.likes{
-      background-color: #6EACDA;
+      background-color: $aux-color3;
     }
     &:hover{
       transition: 400ms;

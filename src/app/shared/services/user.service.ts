@@ -21,6 +21,11 @@ export class UserService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuario`)
   }
 
+  getUserById(id: number | undefined): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/usuario/${id}`);
+  }
+
+
 
   updateUser(id: number | undefined, request: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.apiUrl}/usuario/${id}`, request);

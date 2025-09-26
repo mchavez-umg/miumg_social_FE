@@ -28,6 +28,41 @@
   }
 
   .table-container{
-    height: calc(100vh - 373px);
+    border-radius: 15px;
+    padding: 1em;
+    height: calc(100vh - 220px);
+    .table-container__title{
+      background-color: $label-color;
+      border-radius: 25px;
+      padding: 5px;
+      display: flex;
+      align-items: center;
+      h1{
+        color: white;
+        font-weight: bold;
+        margin: 0 0 0 .5em;
+        font-size: 1.2rem;
+      }
+    }
+  }
+
+  .text-truncate{
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 150px;
+  }
+
+  .center-cell {
+    text-align: center;
+  }
+
+  .tbl-icon{
+    color: $label-color;
+    cursor: pointer;
+  }
+
+  .date-column{
+    width: 31%;
   }
 }
