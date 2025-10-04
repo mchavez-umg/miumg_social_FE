@@ -2,7 +2,8 @@
 
 .admin-component{
   .container-list{
-    height: calc(100vh - 125px);
+    height: auto;
+    overflow: auto;
   }
 
   .mat-mdc-card-subtitle{
@@ -13,5 +14,8 @@
   .container-form{
     border-radius: 15px;
     height: calc(100vh - 125px);
+    @media (max-width: 768px) {
+      margin-top: 2em;
+    }
   }
 }

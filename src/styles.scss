@@ -233,7 +233,7 @@ button{
       height: calc(100vh - 257px);
       display: block;
       position: relative;
-      overflow-x: hidden;
+      overflow: auto;
       background-color: #ffffff;
       margin-top: 8px;
       border-top-left-radius: 15px;

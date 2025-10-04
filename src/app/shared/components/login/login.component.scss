@@ -10,125 +10,148 @@
   justify-content: center;
   align-items: center;
 
-  .card-container{
-    background-color: #ffffffeb;
-    @media (max-width: 992px) {
-      height: auto;
-    }
-    .welcome-title{
-      color: black;
-      font-size: 2.8rem;
-      font-family: "Jost", sans-serif;
-    }
-    .second-title{
-      text-align: center;
-      color: $secondary-color;
-      margin-top: .5em;
-      font-size: 1.2rem;
-      margin-bottom: 1em;
-      font-family: "Jost", sans-serif;
-
-    }
-    .mat-mdc-card-content{
-      display: flex;
-      justify-content: center;
-      .form-container{
-        width: 77%;
-        @media (max-width: 992px) {
-          width: 100%;
-        }
+  .general-container{
+    .card-container{
+      background-color: #ffffffeb;
+      .welcome-title{
+        color: black;
+        font-size: 2.8rem;
+        font-family: "Jost", sans-serif;
       }
-      @media (max-width: 992px) {
-        height: 100%;
-        display: flex;
-        align-items: center;
-        overflow: auto;
-      }
-    }
-    .mat-mdc-card-actions{
-      width: 73%;
-      .buttons-container{
-        display: flex;
-        justify-content: space-around;
-      }
-      .btn-submit{
-        width: 100%;
+      .second-title{
+        text-align: center;
+        color: $secondary-color;
         margin-top: .5em;
-        border-radius: 5em;
-        color: white;
-        background-color: $primary-color;
-        transition: 400ms;
+        font-size: 1.2rem;
+        margin-bottom: 1em;
         font-family: "Jost", sans-serif;
 
-        &:hover{
-          transition: 400ms;
-          transform: translateY(-0.18rem);
-          box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-        }
       }
-
-      .btn-submit-google{
-        @extend .btn-submit;
-        background-color: $secondary-color;
-      }
-
-      .recovered-password{
+      .mat-mdc-card-content{
         display: flex;
         justify-content: center;
-        span{
-          color: $icon-color;
-          font-family: "Jost", sans-serif;
-          cursor: pointer;
-          transition: 400ms;
-          &:hover{
-            transition: 400ms;
-            transform: translateY(-0.25rem);
+        .form-container{
+          width: 77%;
+          @media (max-width: 992px) {
+            width: 100%;
           }
         }
+
         @media (max-width: 992px) {
-          justify-content: center;
+          display: flex;
+          align-items: center;
+          overflow: auto;
         }
       }
-    }
-  }
+      .mat-mdc-card-actions{
+        width: 73%;
+        .buttons-container{
+          display: flex;
+          justify-content: space-around;
+        }
+        .btn-submit{
+          width: 100%;
+          margin-top: .5em;
+          border-radius: 5em;
+          color: white;
+          background-color: $primary-color;
+          transition: 400ms;
+          font-family: "Jost", sans-serif;
 
-  .right-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(
-        rgb(25, 71, 117),
-        rgba(25, 71, 117, 0.71),
-        rgba(25, 71, 117, 0.25));
-    .home-image{
-      height: calc(100vh - 140px);
-      @media (max-width: 992px) {
+          &:hover{
+            transition: 400ms;
+            transform: translateY(-0.18rem);
+            box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+          }
+        }
+
+        .btn-submit-google{
+          @extend .btn-submit;
+          background-color: $secondary-color;
+        }
+
+        .recovered-password{
+          display: flex;
+          justify-content: center;
+          span{
+            color: $icon-color;
+            font-family: "Jost", sans-serif;
+            cursor: pointer;
+            transition: 400ms;
+            &:hover{
+              transition: 400ms;
+              transform: translateY(-0.25rem);
+            }
+          }
+          @media (max-width: 992px) {
+            justify-content: center;
+          }
+        }
+      }
+      .home-image__mobile{
+        display: none;
+        @media (max-width: 768px) {
+          display: block;
+          transform: scale(1);
+        }
+      }
+      @media (max-width: 768px) {
+        width: 90%;
+        padding: 2em;
+        border-radius: 30px;
+      }
+      @media (max-width: 450px) {
+        width: 100%;
+      }
+    }
+
+    .right-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(
+          rgb(25, 71, 117),
+          rgba(25, 71, 117, 0.71),
+          rgba(25, 71, 117, 0.25));
+      .home-image{
+        height: calc(100vh - 140px);
+        @media (max-width: 1500px) {
+          width: 33em;
+        }
+        @media (max-width: 768px) {
+          display: none;
+        }
+      }
+      @media (max-width: 768px) {
         display: none;
       }
     }
 
+    .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
+      border: solid 1px #A04747;
+      border-radius: 5em;
+    }
 
-    @media (max-width: 992px) {
-      height: auto;
+    .mdc-line-ripple{
+      display: none;
+    }
+
+    .mat-mdc-form-field-infix {
+      margin-top: 0;
+      margin-left: 1em;
+      margin-bottom: 12px;
+    }
+    @media (max-width: 768px) {
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
   }
 
-  .mat-mdc-form-field-has-icon-suffix .mat-mdc-text-field-wrapper {
-    border: solid 1px #A04747;
-    border-radius: 5em;
+  @media (max-width: 768px) {
+    padding: 3em;
+    height: auto;
   }
-
-  .mdc-line-ripple{
-    display: none;
-  }
-
-
-  .mat-mdc-form-field-infix {
-    margin-top: 0;
-    margin-left: 1em;
-    margin-bottom: 12px;
-  }
-
 }
 
 //Evitar cambio de estilo en el autocomplete

@@ -2,7 +2,8 @@
 
 .user-component{
   .container-list{
-    height: calc(100vh - 125px);
+    height: auto;
+    overflow: auto;
   }
 
   .mat-mdc-card-subtitle{
@@ -13,6 +14,10 @@
   .container-form{
     border-radius: 15px;
     height: calc(100vh - 125px);
+    @media (max-width: 768px) {
+      margin-top: 2em;
+      height: auto;
+    }
   }
 
   .mat-mdc-list-item-title{
@@ -43,6 +48,10 @@
         margin: 0 0 0 .5em;
         font-size: 1.2rem;
       }
+    }
+    @media (max-width: 768px) {
+      height: auto;
+      overflow: auto;
     }
   }
 
