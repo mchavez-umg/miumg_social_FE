@@ -97,15 +97,13 @@ export class AdminListComponent implements OnInit, OnDestroy {
 
   onPageChange(event: any) {
     this.page = +event.pageIndex;
-    //this.reload();
   }
 
   clearSearch() {
-    this.formSearch.reset();
     this.formSearch.get('search')?.setValue('');
     this.page = 0;
-    this.itemSelected = -1;
-    //this.reload();
+    this.getAdministradores();
+    this.resetForm();
   }
 
   onSubmit() {
@@ -141,7 +139,14 @@ export class AdminListComponent implements OnInit, OnDestroy {
   }
 
   onSubmitSearch() {
-
+    this.resetForm();
+    let username = this.formSearch.value;
+    this.service.searchAdmin(username.search).subscribe({
+      next: data => {
+        this.list = data;
+        this.queryCount = data.length;
+      }
+    });
   }
 
   loadForm(itemSelected: Admin) {

@@ -342,3 +342,10 @@ button{
   padding: 15px !important;
   font-family: Arial, sans-serif !important;
 }
+
+.text-truncate__item{
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 290px;
+}

@@ -3,6 +3,7 @@ import {HttpClient} from "@angular/common/http";
 import {API_URL} from "../utilities/constants.utility";
 import {Observable} from "rxjs";
 import {Usuario} from "../interfaces/usuario";
+import {Admin} from "../interfaces/admin";
 
 @Injectable({
   providedIn: 'root'
@@ -21,11 +22,13 @@ export class UserService {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuario`)
   }
 
+  searchUser(searchText: string): Observable<Usuario[]> {
+    return this.http.get<Usuario[]>(`${this.apiUrl}/usuario/search?username=${searchText}`);
+  }
+
   getUserById(id: number | undefined): Observable<Usuario[]> {
     return this.http.get<Usuario[]>(`${this.apiUrl}/usuario/${id}`);
   }
-
-
 
   updateUser(id: number | undefined, request: Usuario): Observable<Usuario> {
     return this.http.put<Usuario>(`${this.apiUrl}/usuario/${id}`, request);

@@ -117,14 +117,21 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
   }
 
   clearSearch() {
-    this.formSearch.reset();
     this.formSearch.get('search')?.setValue('');
     this.page = 0;
-    this.itemSelected = -1;
+    this.getUsers();
+    this.resetForm();
   }
 
   onSubmitSearch() {
-
+    this.resetForm();
+    let username = this.formSearch.value;
+    this.service.searchUser(username.search).subscribe({
+      next: data => {
+        this.list = data;
+        this.queryCount = data.length;
+      }
+    });
   }
 
   loadForm(itemSelected: Usuario) {
@@ -137,6 +144,11 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     })
 
     this.statusItemSelected = itemSelected.status;
+  }
+
+  resetForm() {
+    this.form.reset();
+    this.itemSelected = -1;
   }
 
   changeStatus(event: any) {

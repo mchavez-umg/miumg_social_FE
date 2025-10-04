@@ -49,9 +49,35 @@
 
   .likes{
     background-color: $label-color;
+    height: 4em;
+    padding: 1m;
+    border-radius: 20px;
+    margin-bottom: 1em;
+    display: flex;
+    align-items: center;
+    .mat-icon{
+      color: white;
+      margin-left: 1em;
+    }
+    span{
+      color: white;
+      font-weight: bold;
+      margin-left: .5em;
+    }
+    .likes__count{
+      font-weight: bold;
+      font-size: 1.3rem;
+    }
   }
 
   .comments{
+    @extend .likes;
+    cursor: pointer;
+    transition: 400ms;
     background-color: $aux-color3;
+    &:hover{
+      transition: 400ms !important;
+      background-color: $secondary-color;
+    }
   }
 }

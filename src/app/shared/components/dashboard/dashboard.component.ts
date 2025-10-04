@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from "../../services/user.service";
 import {PostService} from "../../services/post.service";
-import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
+import { MatCardModule} from "@angular/material/card";
 import {DecimalPipe} from "@angular/common";
 
 @Component({

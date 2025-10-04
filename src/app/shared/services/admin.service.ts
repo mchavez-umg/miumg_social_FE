@@ -13,6 +13,10 @@ export class AdminService {
   constructor(public http: HttpClient) {
   }
 
+  searchAdmin(searchText: string): Observable<Admin[]> {
+    return this.http.get<Admin[]>(`${this.apiUrl}/admin/search?username=${searchText}`);
+  }
+
   getAdministradores(): Observable<Admin[]> {
     return this.http.get<Admin[]>(`${this.apiUrl}/admin`);
   }

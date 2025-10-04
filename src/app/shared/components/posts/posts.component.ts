@@ -1,6 +1,6 @@
 import {AfterViewInit, Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule} from "@angular/forms";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
 import {MatListModule} from "@angular/material/list";
 import {SearchBasicComponent} from "../search-basic/search-basic.component";
 import {MatPaginatorModule} from "@angular/material/paginator";
@@ -22,11 +22,14 @@ import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {NotificationsService} from "angular2-notifications";
-import {Router} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "../../services/post.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Publicacion} from "../../interfaces/publicacion";
 import {DomSanitizer} from "@angular/platform-browser";
+import {MatDialog} from "@angular/material/dialog";
+import {CommentsDialogComponent} from "../comments-dialog/comments-dialog.component";
+import {MatIconButton} from "@angular/material/button";
 
 @Component({
   selector: 'app-posts',
@@ -52,10 +55,9 @@ import {DomSanitizer} from "@angular/platform-browser";
     MatInputModule,
     MatSortModule,
     MatPaginatorModule,
-    DatePipe,
-    MatCardTitle,
     MatCardImage,
-    MatCardActions
+    MatIconButton,
+
   ],
   templateUrl: './posts.component.html',
   styleUrl: './posts.component.scss',
@@ -74,11 +76,14 @@ export class PostsComponent implements OnInit, OnDestroy {
   queryCount: number;
   title: string = '';
   imagePath: any;
+  commentsLength: number = 0;
+  likesLength: number = 0;
+  comments: any[] = [];
 
   constructor(private service: PostService,
               private notifications: NotificationsService,
-              private route: Router,
-              private _sanitizer: DomSanitizer,
+              public dialog: MatDialog,
+              private route: ActivatedRoute,
               private datePipe: DatePipe) {
     this.formSearch = new FormGroup({
       search: new FormControl('')
@@ -91,6 +96,11 @@ export class PostsComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    const id = this.route.snapshot.queryParamMap.get('id');
+    if (id) {
+      this.loadForm(+id);
+
+    }
     this.title = 'Detalle';
     this.getPost();
   }
@@ -123,17 +133,35 @@ export class PostsComponent implements OnInit, OnDestroy {
     this.formSearch.reset();
     this.formSearch.get('search')?.setValue('');
     this.page = 0;
-    this.itemSelected = -1;
+    this.getPost();
+    this.resetForm();
   }
 
   onSubmitSearch() {
-
+    this.resetForm();
+    let description = this.formSearch.value;
+    this.service.searchPost(description.search).subscribe({
+      next: data => {
+        this.list = data;
+        this.queryCount = data.length;
+      }
+    });
   }
 
-  loadForm(itemSelected: Publicacion) {
-    this.itemSelected = itemSelected.id;
+  resetForm() {
+    this.form.reset();
+    this.itemSelected = -1;
+    this.likesLength = 0;
+    this.commentsLength = 0;
+    this.imagePath = null;
+  }
+
+  loadForm(itemSelected: number | undefined) {
+    this.itemSelected = itemSelected;
     this.service.getPostById(this.itemSelected).subscribe({
       next: (data: any) => {
+        this.countLikes();
+        this.getComments();
         this.imagePath = 'data:image/jpeg;base64,' + data.image;
         this.form.patchValue({
           description: data.description,
@@ -142,6 +170,45 @@ export class PostsComponent implements OnInit, OnDestroy {
       }
     })
 
+  }
+
+  countLikes() {
+    this.service.getCountlikes(this.itemSelected).subscribe({
+      next: (data: any) => {
+        this.likesLength = data;
+      }
+    })
+  }
+
+  getComments() {
+    this.service.getCommentsByPublication(this.itemSelected).subscribe({
+      next: (data: any) => {
+        this.comments = data;
+        this.commentsLength = data.length;
+      }
+    });
+  }
+
+  openDialogComments() {
+   let dialogRef = this.dialog.open(CommentsDialogComponent, {
+      data: this.comments,
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.getComments();
+      }
+    })
+  }
+
+  onDelete(itemSelected: any) {
+    this.service.deletePost(itemSelected.id).subscribe({
+      next: data => {
+        this.getPost();
+        this.notifications.success('Operación Exitosa', data);
+      }, error: (error: HttpErrorResponse) => {
+        this.notifications.error('Error', error.message);
+      }
+    })
   }
 
 }
