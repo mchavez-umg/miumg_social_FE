@@ -64,9 +64,14 @@
               <input formControlName="password" matInput maxlength="40" required type="text">
               @if (form.get('password')?.invalid) {
                 <mat-error>
-                  El campo es requerido
+                  {{
+                    form.get('password')?.hasError('required') ? 'El campo es requerido' :
+                      form.get('password')?.hasError('pattern') ? 'El password debe cumplir con tener una longitud mínima de 6 caracteres, y contener al menos un carácter especial, una letra mayúscula, una minúscula y un número.' :
+                      ''
+                  }}
                 </mat-error>
               }
+
             </mat-form-field>
           </div>
         </mat-card-content>

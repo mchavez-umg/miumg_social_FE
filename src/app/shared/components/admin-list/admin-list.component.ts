@@ -66,7 +66,9 @@ export class AdminListComponent implements OnInit, OnDestroy {
     });
     this.form = new FormGroup({
       username: new FormControl('', Validators.required),
-      password: new FormControl('', Validators.required),
+      password: new FormControl('', [
+        Validators.required,
+        Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*(),.?":{}|<>_\\-]).{6,}$')]),
     });
   }
 
