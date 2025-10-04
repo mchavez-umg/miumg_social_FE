@@ -42,6 +42,9 @@
 
   .mat-mdc-dialog-content{
     width: 40em;
+    @media (max-width: 768px) {
+      width: auto;
+    }
   }
 
   .list-comments{

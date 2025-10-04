@@ -1,21 +1,12 @@
 @import "../src/styles";
 
 .admin-component{
-  .container-list{
-    height: auto;
-    overflow: auto;
+  .mat-mdc-card-content{
+    height: calc(100vh - 310px) !important;
   }
-
-  .mat-mdc-card-subtitle{
-    margin-top: -1.8em;
-    margin-left: 1em;
-  }
-
-  .container-form{
-    border-radius: 15px;
-    height: calc(100vh - 125px);
+  .button-container{
     @media (max-width: 768px) {
-      margin-top: 2em;
+      padding: 2em;
     }
   }
 }
