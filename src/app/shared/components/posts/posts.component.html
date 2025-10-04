@@ -74,12 +74,12 @@
                     <span class="likes__count">{{likesLength}}</span>
                   </div>
                 </div>
-                <div class="comments col-12 animate__animated  animate__backInRight" matTooltip="Ver Comentarios">
+                <div (click)="openDialogComments()" class="comments col-12 animate__animated  animate__backInRight" matTooltip="Ver Comentarios">
                   <div>
                     <mat-icon>comment</mat-icon>
                   </div>
                   <span>Comentarios: </span>
-                  <div (click)="openDialogComments()"  class="w-100 d-flex justify-content-end me-4">
+                  <div  class="w-100 d-flex justify-content-end me-4">
                     <span class="likes__count">{{commentsLength}}</span>
                   </div>
                 </div>
