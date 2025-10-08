@@ -22,13 +22,19 @@ export class AuthService implements CanActivate {
   }
 
   canActivate(): boolean {
-    if (this.checkLoginStatus()) {
+    if (typeof window !== 'undefined' && localStorage) {
+      const isLoggedIn = this.isLoggedIn();
+
+      if (!isLoggedIn) {
+        this.router.navigate(['/login']);
+        return false;
+      }
       return true;
     } else {
-      this.router.navigate(['/login']);
       return false;
     }
   }
+
 
   login() {
     localStorage.setItem('isLoggedIn', 'true');
@@ -40,5 +46,9 @@ export class AuthService implements CanActivate {
     localStorage.removeItem('isLoggedIn');
     this.loggedIn.next(false);
     this.router.navigate(['/login']);
+  }
+
+  isLoggedIn(): boolean {
+    return localStorage.getItem('isLoggedIn') === 'true';
   }
 }

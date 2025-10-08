@@ -1,11 +1,10 @@
 import {Component, signal} from '@angular/core';
-import {MatCard, MatCardContent, MatCardModule} from "@angular/material/card";
+import {MatCardModule} from "@angular/material/card";
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
-import {MatIcon, MatIconModule} from "@angular/material/icon";
+import {MatFormFieldModule} from "@angular/material/form-field";
+import {MatIconModule} from "@angular/material/icon";
 import {MatInput} from "@angular/material/input";
 import {MatButton, MatIconButton} from "@angular/material/button";
-import {RouterLink} from "@angular/router";
 import {HttpErrorResponse} from "@angular/common/http";
 import {NotificationsService} from "angular2-notifications";
 import {AuthService} from "../../services/auth.service";
@@ -20,8 +19,6 @@ import {UserService} from "../../services/user.service";
     MatFormFieldModule,
     MatIconModule,
     MatInput,
-    MatIconButton,
-    RouterLink,
     MatButton
   ],
   templateUrl: './login.component.html',
