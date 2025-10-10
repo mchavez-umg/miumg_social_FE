@@ -79,6 +79,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
       name: new FormControl(''),
       status: new FormControl(0),
       username: new FormControl(''),
+      password: new FormControl(''),
     });
   }
 
@@ -156,6 +157,7 @@ export class UsersComponent implements OnInit, OnDestroy, AfterViewInit {
     let payload = {...this.form.value, status: status};
     this.service.updateUser(this.itemSelected, payload).subscribe({
       next: data => {
+        this.notifications.success('Estado actualizado');
         this.getUsers();
         this.loadForm(data)
       }
