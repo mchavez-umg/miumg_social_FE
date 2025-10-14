@@ -162,7 +162,7 @@ export class PostsComponent implements OnInit, OnDestroy {
       next: (data: any) => {
         this.countLikes();
         this.getComments();
-        this.imagePath = 'data:image/jpeg;base64,' + data.image;
+        this.imagePath = data.image;
         this.form.patchValue({
           description: data.description,
           publicationDate: this.datePipe.transform(data.publicationDate, "dd/MM/yyyy HH:mm:ss")
