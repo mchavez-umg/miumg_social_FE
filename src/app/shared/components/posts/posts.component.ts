@@ -125,10 +125,6 @@ export class PostsComponent implements OnInit, OnDestroy {
     }
   }
 
-  onPageChange(event: any) {
-    this.page = +event.pageIndex;
-  }
-
   clearSearch() {
     this.formSearch.reset();
     this.formSearch.get('search')?.setValue('');
