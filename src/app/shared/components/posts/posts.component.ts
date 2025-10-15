@@ -199,6 +199,7 @@ export class PostsComponent implements OnInit, OnDestroy {
   onDelete(itemSelected: any) {
     this.service.deletePost(itemSelected.id).subscribe({
       next: data => {
+        this.resetForm();
         this.getPost();
         this.notifications.success('Operación Exitosa', data);
       }, error: (error: HttpErrorResponse) => {
