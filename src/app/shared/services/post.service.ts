@@ -36,6 +36,10 @@ export class PostService {
     return this.http.get<any[]>(`${this.apiUrl}/publicacion/${id}/comment`)
   }
 
+  getInfoLikesByPublication(id: number | undefined) {
+    return this.http.get<any[]>(`${this.apiUrl}/publicacion/${id}/infoLikes`)
+  }
+
   deletePost(id: number | undefined): Observable<string> {
     return this.http.delete<string>(`${this.apiUrl}/publicacion/${id}`, { responseType: 'text' as 'json' });
   }

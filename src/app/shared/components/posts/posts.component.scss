@@ -6,7 +6,7 @@
   .post-container{
     display: flex;
     justify-content: center;
-    height: calc(100vh - 317px);
+    height: calc(100vh - 340px);
     border-radius: 20px;
     border: 1px solid #dddddd;
     padding: 1em;
@@ -34,6 +34,7 @@
     margin-bottom: 1em;
     display: flex;
     align-items: center;
+    cursor: pointer;
     .mat-icon{
       color: white;
       margin-left: 1em;
@@ -46,6 +47,10 @@
     .likes__count{
       font-weight: bold;
       font-size: 1.3rem;
+    }
+    &:hover{
+      transition: 400ms !important;
+      background-color: $secondary-color;
     }
   }
 

@@ -1,0 +1,44 @@
+.userlike-component{
+
+  .comment_icon{
+    border-radius: 100%;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 3em;
+    width: 3em;
+    background-color: #7a7a7a;
+    mat-icon {
+      color: white;
+    }
+  }
+
+  .comment_description{
+    margin-top: 5px;
+    height: auto;
+    max-height: 5em;
+    overflow: auto;
+    width: 100%;
+    word-wrap: break-word;
+    white-space: normal;
+    background-color: #f4f4f4;
+    border-radius: 10px;
+    padding: 7px;
+    span{
+      color: black;
+    }
+  }
+
+  .mat-mdc-dialog-content{
+    width: 40em;
+    @media (max-width: 768px) {
+      width: auto;
+    }
+  }
+
+  .list-comments{
+    height: auto;
+    border-radius: 15px;
+    margin-bottom: 1em;
+  }
+}

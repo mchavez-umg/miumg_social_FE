@@ -47,6 +47,7 @@
             <mat-form-field class="col-sm-8"ssss>
               <mat-label>Descripción</mat-label>
               <textarea cdkTextareaAutosize
+                        [cdkAutosizeMaxRows]="3"
                         readonly
                         matInput
                         id="description"
@@ -64,28 +65,30 @@
                 </div>
               }
             </div>
-            <div class="col-sm-6">
-              <div class="p-2">
-                <div class="likes col-12 animate__animated  animate__backInRight">
-                  <div>
-                    <mat-icon>thumb_up</mat-icon>
+            @if (itemSelected !=  -1){
+              <div class="col-sm-6">
+                <div class="p-2">
+                  <div (click)="openDialogLikes()" class="likes col-12 animate__animated  animate__backInRight" matTooltip="Ver interacción">
+                    <div>
+                      <mat-icon>thumb_up</mat-icon>
+                    </div>
+                    <span>Likes: </span>
+                    <div class="w-100 d-flex justify-content-end me-4">
+                      <span class="likes__count">{{likesLength}}</span>
+                    </div>
                   </div>
-                  <span>Likes: </span>
-                  <div class="w-100 d-flex justify-content-end me-4">
-                    <span class="likes__count">{{likesLength}}</span>
-                  </div>
-                </div>
-                <div (click)="openDialogComments()" class="comments col-12 animate__animated  animate__backInRight" matTooltip="Ver Comentarios">
-                  <div>
-                    <mat-icon>comment</mat-icon>
-                  </div>
-                  <span>Comentarios: </span>
-                  <div  class="w-100 d-flex justify-content-end me-4">
-                    <span class="likes__count">{{commentsLength}}</span>
+                  <div (click)="openDialogComments()" class="comments col-12 animate__animated  animate__backInRight" matTooltip="Ver Comentarios">
+                    <div>
+                      <mat-icon>comment</mat-icon>
+                    </div>
+                    <span>Comentarios: </span>
+                    <div  class="w-100 d-flex justify-content-end me-4">
+                      <span class="likes__count">{{commentsLength}}</span>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
+            }
           </div>
         </mat-card-content>
       </form>

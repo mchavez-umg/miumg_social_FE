@@ -1,0 +1,26 @@
+<div class="userlike-component">
+  <h2 mat-dialog-title>Reacciones</h2>
+  <mat-dialog-content>
+    <div class="comments-container">
+      <mat-list>
+        @for (item of infolikes; track item) {
+          <mat-list-item
+            class="mat-elevation-z1 list-comments">
+            <div class="d-flex align-items-center">
+              <div class="comment_icon">
+                <mat-icon>person</mat-icon>
+              </div>
+              <div class="ms-2">
+                <span class="comment_username" matListItemTitle>{{ item.username }}</span>
+                <span class="comment_date" matListItemLine>{{ item.likedDate | date: 'dd/MM/yyyy HH:mm'}}</span>
+              </div>
+            </div>
+          </mat-list-item>
+        }
+      </mat-list>
+    </div>
+  </mat-dialog-content>
+  <mat-dialog-actions class="d-flex justify-content-end">
+    <button mat-button [mat-dialog-close]="" cdkFocusInitial>Cerrar</button>
+  </mat-dialog-actions>
+</div>

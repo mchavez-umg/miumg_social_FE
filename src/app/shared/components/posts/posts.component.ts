@@ -9,16 +9,14 @@ import {MatLineModule} from "@angular/material/core";
 import {MatTooltipModule} from "@angular/material/tooltip";
 import {DatePipe, NgClass} from "@angular/common";
 import {
-  MatCard, MatCardActions,
+  MatCard,
   MatCardContent,
   MatCardHeader,
   MatCardImage,
   MatCardSubtitle,
-  MatCardTitle
 } from "@angular/material/card";
 import {MatFormField, MatFormFieldModule, MatLabel} from "@angular/material/form-field";
 import {MatInput, MatInputModule} from "@angular/material/input";
-import {MatSlideToggle} from "@angular/material/slide-toggle";
 import {MatTableModule} from "@angular/material/table";
 import {MatSortModule} from "@angular/material/sort";
 import {NotificationsService} from "angular2-notifications";
@@ -26,10 +24,10 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {PostService} from "../../services/post.service";
 import {HttpErrorResponse} from "@angular/common/http";
 import {Publicacion} from "../../interfaces/publicacion";
-import {DomSanitizer} from "@angular/platform-browser";
 import {MatDialog} from "@angular/material/dialog";
 import {CommentsDialogComponent} from "../comments-dialog/comments-dialog.component";
 import {MatIconButton} from "@angular/material/button";
+import {UsersLikeDialogComponent} from "../users-like-dialog/users-like-dialog.component";
 
 @Component({
   selector: 'app-posts',
@@ -192,6 +190,17 @@ export class PostsComponent implements OnInit, OnDestroy {
     dialogRef.afterClosed().subscribe(result => {
       if (result === 'success') {
         this.getComments();
+      }
+    })
+  }
+
+  openDialogLikes() {
+   let dialogRef = this.dialog.open(UsersLikeDialogComponent, {
+     data: this.itemSelected
+   });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === 'success') {
+        this.loadForm(this.itemSelected);
       }
     })
   }
